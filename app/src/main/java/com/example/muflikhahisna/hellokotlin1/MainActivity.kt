@@ -1,25 +1,27 @@
 package com.example.muflikhahisna.hellokotlin1
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
     private var items: MutableList<Item> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
         val list = findViewById<RecyclerView>(R.id.club_list)
         initData()
 
         list.layoutManager = LinearLayoutManager(this)
-        list.adapter = RecyclerViewAdapter(this, items)
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val textHello = findViewById<TextView>(R.id.text_hello)
-        textHello.text = "Hello Kotlin!"
-
+        list.adapter = RecyclerViewAdapter(this, items){
+            val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
+            toast.show()
+        }
     }
 
     private fun initData(){
@@ -34,5 +36,4 @@ class MainActivity : AppCompatActivity() {
         //Recycle the typed array
         image.recycle()
     }
-
 }

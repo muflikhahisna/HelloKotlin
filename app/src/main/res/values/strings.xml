@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">KotlinAcademy</string>
     <string-array name="club_name">
         <item>Barcelona FC</item>
         <item>Real Madrid FC</item>
